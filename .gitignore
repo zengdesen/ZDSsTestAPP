@@ -1,0 +1,57 @@
+/local.properties
+.externalNativeBuild
+.DS_Store
+/captures
+
+### ignore java class file
+*.class
+dump.rdb
+
+### ignore android local.properties
+local.properties
+
+### ignore eclipse build path
+bin/
+
+###ignore android gen class
+gen/
+
+#### ignore  proguard
+proguard/
+
+## ignore idea
+.idea/
+build/
+/*/build/
+*.iml
+
+## ignore android studio and gradle
+.gradle/
+
+## ignore or eclipse
+.classpath
+.project
+.settings/
+
+## current ignore oslibs dir
+oslibs/
+## ignore 3td party sdk libs
+sdks/
+
+## ignore release dir
+release/
+## ignore python script
+*.py[cos]
+
+# Built application files
+*.apk
+*.ap_
+
+# Files for the Dalvik VM
+*.dex
+
+# Java class files
+*.class
+
+# Log Files
+*.log

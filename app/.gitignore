@@ -1,0 +1,37 @@
+### ignore java class file
+*.class
+
+### ignore android local.properties
+local.properties
+
+### ignore eclipse build path
+bin/
+
+###ignore android  gen class
+gen/
+
+#### ignore  proguard
+proguard/
+
+## ignore idea
+.idea/
+build/
+*.iml
+
+## ignore android studio and gradle
+gradle/
+gradlew
+
+## ignore or eclipse
+.classpath
+.project
+.settings/
+
+## current ignore oslibs dir
+oslibs/
+## ignore 3td party sdk libs
+sdks/
+
+## ignore python script
+*.py[cos]
+.DS_Store
