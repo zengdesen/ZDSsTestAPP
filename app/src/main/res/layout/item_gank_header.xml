@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="header"
+            type="none.zds.zdsstestapp.ui.viewmodel.GankItemHeaderViewModel"/>
+    </data>
+
+    <FrameLayout
+        android:id="@+id/frame_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/bg_card"
+            android:paddingBottom="4dp"
+            android:paddingLeft="2.5dp"
+            android:paddingRight="2.5dp"
+            android:paddingTop="2dp">
+
+            <ImageView
+                android:id="@+id/iv_fuli"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:maxHeight="300dp"
+                android:onClick="@{header.onClick}"
+                android:scaleType="centerCrop"
+                app:gankHeaderImageUrl="@{header.photoUrl}"/>
+        </FrameLayout>
+
+    </FrameLayout>
+
+</layout>

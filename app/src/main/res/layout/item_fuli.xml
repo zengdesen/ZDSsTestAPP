@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="fuli"
+            type="none.zds.zdsstestapp.ui.viewmodel.FuliItemViewModel"/>
+    </data>
+
+    <LinearLayout
+        android:id="@+id/fuli_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"
+        android:layout_marginTop="2dp"
+        android:background="@drawable/bg_card"
+        android:clickable="true"
+        android:orientation="vertical"
+        android:visibility="invisible"
+        android:onClick="@{fuli.onClick}">
+
+        <none.zds.zdsstestapp.widget.RatioImageView
+            android:id="@+id/iv_fuli"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            app:fuliImageUrl="@{fuli.photoUrl}"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp">
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                app:text="@{fuli.title}"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</layout>

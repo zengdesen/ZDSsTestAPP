@@ -1,3 +1,21 @@
 <resources>
-    <string name="app_name">ZDSsTestAPP</string>
+    <string name="app_name">福利&amp;干货</string>
+
+    <string name="action_refresh">刷新</string>
+    <string name="action_copy_url">复制链接</string>
+    <string name="action_open_url">用浏览器打开</string>
+    <string name="action_retry">重试</string>
+    <string name="action_save">保存</string>
+    <string name="action_share">分享</string>
+    <string name="action_about">关于这个APP</string>
+
+    <string name="tip_copy_done">复制成功</string>
+    <string name="tip_open_fail">打开失败，没有找到可以打开该链接的其它应用 :(</string>
+    <string name="snap_load_fail">加载失败，请重试</string>
+    <string name="ask_saving_picture">保存到手机?</string>
+    <string name="picture_has_save_to">图片已保存至 %s 文件夹</string>
+    <string name="share_to">分享到...</string>
+
+    <string name="version_info">版本 %1s</string>
+    <string name="introduce">RxJava、Retrofit2、Material Design、MVP、DataBinding、retrolambda…\n\n其实就只是想试试 MVP + DataBinding 实际的样子，顺便堆上一些新奇的东西，看看会不会炸……\n\n数据来源：代码家 (http://gank.io)\n\n客户端：zengdesen</string>
 </resources>

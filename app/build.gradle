@@ -1,21 +1,104 @@
 apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda'
 
 android {
     compileSdkVersion 24
-    buildToolsVersion "24.0.2"
+    buildToolsVersion "24.0.3"
+
     defaultConfig {
         applicationId "none.zds.zdsstestapp"
         minSdkVersion 16
         targetSdkVersion 24
-        versionCode 1
-        versionName "1.0"
+
+        def versionMajor = 1
+        def versionMinor = 0
+        def versionPatch = 1
+        def versionBuild = 0 //bump for dog builds,public betas,etc
+
+        versionCode versionMajor * 1000000 + versionMinor * 10000 + versionPatch * 100 + versionBuild
+        versionName "$versionMajor.$versionMinor.$versionPatch"
+
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            def outputFile = output.outputFile
+            if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                def flavor = variant.mergedFlavor
+                def buildType = variant.buildType
+                def appName = "FLnGH-" + buildType.name + "-" + flavor.versionName + ".apk"
+                output.outputFile = new File("$rootProject.rootDir/apk", appName)
+                println output.outputFile.toString()
+            }
+        }
+    }
+
+    signingConfigs {
+        releaseConfig {
+            Properties props = new Properties()
+            File storePassFile = file("/Users/ZDS/Documents/app/signing/FLnGH/FLnGH.properties")
+            if (storePassFile.exists()) {
+                props.load(new FileInputStream(storePassFile))
+                println "StorePassFile load success "
+            } else {
+                println "StorePassFile not found"
+            }
+            storeFile file("/Users/ZDS/Documents/app/signing/FLnGH/FLnGH.jks")
+            storePassword props['storePassword']
+            keyAlias props['keyAlias']
+            keyPassword props['keyPassword']
+        }
+    }
+
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true  // minifyEnabled 加 shrinkResource 可以自动删除 不需要的资源 (since 0.14.0)
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.releaseConfig
         }
+        debug {
+            versionNameSuffix "-debug"
+        }
+
+    }
+
+//    flavorDimensions "version", "channel"
+//
+//    productFlavors {
+//        Gank {
+//            dimension "version"
+//        }
+//        Fir {
+//            dimension "channel"
+//            manifestPlaceholders = [CHANNEL_NAME: "fir"]
+//        }
+//        GooglePlay {
+//            dimension "channel"
+//            manifestPlaceholders = [CHANNEL_NAME: "GooglePlay"]
+//        }
+//    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES.txt'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/dependencies.txt'
     }
 }
 
@@ -24,6 +107,20 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:24.2.1'
     testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:24.2.1'
+    compile 'com.android.support:design:24.2.1'
+    compile 'com.hannesdorfmann.mosby:mvp:2.0.1'
+    compile 'com.squareup.retrofit2:retrofit:2.1.0'
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+    compile 'io.reactivex:rxandroid:1.2.1'
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.daimajia.numberprogressbar:library:1.2@aar'
+    compile 'com.github.chrisbanes:PhotoView:1.3.0'
+
+    // Latest one on maven central
+    retrolambdaConfig 'net.orfjackal.retrolambda:retrolambda:2.3.0'
+    // Or a local version
+    // retrolambdaConfig files('libs/retrolambda.jar')
 }
